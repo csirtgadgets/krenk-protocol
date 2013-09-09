@@ -40,7 +40,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## Description
 Zero or one. [MLSTRING](#Multilingual Strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
 
-## [Sensitivity](#5.2 Sensitivity)
+## [Sensitivity](#52-sensitivity)
 Zero or many.
 
 #### tlp
