@@ -52,15 +52,15 @@ It is possible to set a granular disclosure policy. A child can override the gui
 
 This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
     
-Enumerated attributes SHALL conform to the universally recognized "Traffic Light Protocol"[1]
+Enumerated attributes SHALL conform to the universally recognized [Traffic Light Protocol](http://en.wikipedia.org/wiki/Traffic_Light_Protocol):
     
-**<font color="red">RED.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
-         
-**<font color="amber">AMBER.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
+1. **<font color="red">RED.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
 
-**<font color="green">GREEN.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
+2. **<font color="amber">AMBER.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
 
-**<font color="white" style="BACKGROUND-COLOR: black">WHITE.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
+3. **<font color="green">GREEN.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
+
+4. **<font color="white" style="BACKGROUND-COLOR: black">WHITE.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
 
 #### rule
 Optional. ENUM. A rule for how the data should be handled by the target Contact (eg: person, entity, community, etc). The permitted values for this attribute are shown below. The default value is "default".
