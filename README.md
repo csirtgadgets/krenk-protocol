@@ -52,7 +52,7 @@ It is possible to set a granular disclosure policy. A child can override the gui
 
 This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
     
-Enumerated attributes SHALL conform to the universally recognized [Traffic Light Protocol](http://en.wikipedia.org/wiki/Traffic_Light_Protocol):
+Enumerated attributes SHALL conform to the universally recognized Traffic Light Protocol[[1]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[2]](http://www.us-cert.gov/tlp):
     
 1. **<font color="red">RED.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
 
