@@ -67,8 +67,8 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 
 1. **default**. The default, out-of-band agreement applies.
 2. **shared**. At-least one entity in this community has been made aware of the data.
-3. **investigation**. This data is currently being investigated.
-4. **share-selectively**. This data may not be appropriate for some under the top level RESTRICTION tag, share selectively.
+3. **investigation**. This data is currently being investigated (LE and/or non-LE).
+4. **share-selectively**. This data may not be appropriate for some under the top level tag, share selectively in conjunction with [Sensitivity](#52-sensitivity).
 5. **no-share**. This data should not be shared with the target Contact (eg: it may not be prudent to share with the LEO community).
 6. **ext-value**. An escape value used to extend this attribute.
 
