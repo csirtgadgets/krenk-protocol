@@ -38,7 +38,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ```
 
 ## Description
-Zero or one. [MLSTRING](#Multilingual Strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
+Zero or one. [MLSTRING](#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
 
 ## [Sensitivity](#52-sensitivity)
 Zero or many.
@@ -100,7 +100,7 @@ Information is transmitted to community1 from community2 with a TLP of "GREEN" a
 ```
 
 ## Description
-Zero or one. MLString. A localized description of the sensitivity.
+Zero or one. [MLSTRING](#multilingual-strings). A localized description of the sensitivity.
 
 #### stype
 Required. ENUM. The sensitivity markings try to convey the care that should be taken with this data. The values range from an active operation is in place (i.e., publication of the data will compromise an activity), to the data was gathered via a known collector, to the data was collected by a covert collector, to the data being older. The default value SHALL be "default" meaning the "out of band, negotiated default value". The permitted values for this attribute are shown below:
