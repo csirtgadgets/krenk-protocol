@@ -1,6 +1,6 @@
 1. Goals
 ==
-The KRENK protocol is an information disclosure guidelies protocol
+The KRENK protocol is an information disclosure protocol. It enables the sharing of intelligence by defining the rules in which intelligence can be, and should be shared amongst practitioners and/or automated systems.
 
 * Provide guidence if and how information should be shared
 
