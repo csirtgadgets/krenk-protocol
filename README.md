@@ -2,7 +2,7 @@
 ==
 The KRENK protocol is an information disclosure protocol. It enables the sharing of intelligence by defining the rules in which intelligence can be, and should be shared amongst practitioners and/or automated systems.
 
-* Provide guidence if and how information should be shared
+* Provide guidance if and how information should be shared
 
 2. License
 ==
@@ -18,13 +18,50 @@ You should have received a copy of the GNU Lesser General Public License along w
 This document is governed by the [Consensus-Oriented Specification System (COSS)](http://www.digistan.org/spec:1/COSS).
 
 
-4. Lanugage
+4. Language
 ==
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC [2119](http://www.ietf.org/rfc/rfc2119.txt).
 
-5. Protocol
+## 5. Examples
+## 5.1 JSON
+```
+{
+    version        => '0.0.1',
+    lang           => 'EN',
+    tlp            => 'red',
+    rule           => 'shared',
+    ttl            => 1,
+    Description    => {
+                            lang => 'EN',
+                            content => 'FOUO',
+                      },
+    Sensitivity    => [{
+                          stype    => 'historical',
+                          Description    => [{ content => 'already shared with LE' }],
+                      }],
+    ReportTime     => '2012-01-01T00:00:50Z',                             
+}
+```
+
+## 5.2 XML
+
+```
+<?xml>
+    <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared", ttl="1">
+        <Description lang="EN">FOUO</Description>
+        <Sensitivity stype="historical">
+            <Description>already shared with LE</Description>
+        </Sensitivity>
+    </Krenk>
+</xml>
+```
+
+## 5.3 Protocol Buffer
+see [source](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/main.proto)
+
+6. Protocol
 ==
-5.1 Krenk
+6.1 Krenk
 --
 ```
 +------------------+
@@ -47,7 +84,7 @@ Required. REAL. The specification version number to which this Envelope conforms
 Required.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646).
 
 ### Description
-Zero or one. [MLString](#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
+Zero or one. [MLSTRING](#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
 
 ### Sensitivity
 Zero or many.
@@ -62,7 +99,7 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes 
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
 
 ### tlp
-Required. ENUM. This attribute idicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
+Required. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
 
 The value of this attribute is logically inherited by the children of this class.  That is to say, the disclosure rules applied to this class, also apply to its children.
  
@@ -72,13 +109,13 @@ This attribute is defined as an enumerated value with a default value of "RED". 
     
 Enumerated attributes SHALL conform to the universally recognized Traffic Light Protocol[[1]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[2]](http://www.us-cert.gov/tlp):
     
-1. **<font color="red">RED.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
+1. **<font color="red">red.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
 
-2. **<font color="amber">AMBER.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
+2. **<font color="amber">amber.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
 
-3. **<font color="green">GREEN.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
+3. **<font color="green">green.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
 
-4. **<font color="white" style="BACKGROUND-COLOR: black">WHITE.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
+4. **<font color="white" style="BACKGROUND-COLOR: black">white.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
 
 ### rule
 Optional. ENUM. A rule for how the data should be handled by the target Contact (eg: person, entity, community, etc). The permitted values for this attribute are shown below. The default value is "default".
@@ -94,15 +131,15 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 Optional. String. A means for extending rule.
 
 ### ttl
-Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be reshared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
+Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
 
 For example:
 
-  Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be reshared as "RED" instead of "AMBER".
+  Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "AMBER".
   
-Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be reshared as "RED" instead of "GREEN".
+Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
 
-5.2 Sensitivity
+6.2 Sensitivity
 --
 ```
 +------------------------+
@@ -127,9 +164,9 @@ Required. ENUM. The sensitivity markings try to convey the care that should be t
 6. ext-value. An escape value used to extend this attribute.
 
 ### ext-sensitivity
-Optiona. String. A means for extending stype.
+Optional. String. A means for extending stype.
 
-6. Data Types
+7. Data Types
 ==
 Multilingual Strings
 --
@@ -154,7 +191,3 @@ A binary octet is represented by the BYTE data type.  A sequence of binary octet
 8.1. Implementations
 --
 1. libkrenk-perl [github.com/csirtgadgets](https://github.com/csirtgadgets/libkrenk-perl)
-
-9. Bibliography
-==
-1. "Key words for use in RFCs to Indicate Requirement Levels" - [ietf.org](http://tools.ietf.org/html/rfc2119)
