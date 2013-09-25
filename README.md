@@ -121,7 +121,7 @@ Required.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/htm
 Zero or one. [MLSTRING](#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
 
 ### Sensitivity
-Zero or many.
+Zero or many. Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
 
 ### ReportTime
 Zero or one. TIMESTAMP. A timestamp that represents when this data marking was generated.
@@ -162,7 +162,7 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 6. **ext-value**. An escape value used to extend this attribute.
 
 ### ext-rule
-Optional. String. A means for extending rule.
+Optional. STRING. A means for extending rule.
 
 ### ttl
 Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
@@ -184,8 +184,12 @@ Information is transmitted to community1 from community2 with a TLP of "GREEN" a
 +------------------------+
 ```
 
+The aggregate classes that constitute Sensitivity are:
+
 ### Description
-Zero or many. MLString. A localized description of the sensitivity.
+Zero or many. MLSTRING. A localized description of the sensitivity.
+
+The Sensitivity class has two attributes:
 
 ### stype
 Required. ENUM. The sensitivity markings try to convey the care that should be taken with this data. The values range from an active operation is in place (i.e., publication of the data will compromise an activity), to the data was gathered via a known collector, to the data was collected by a covert collector, to the data being older. The default value SHALL be "default" meaning the "out of band, negotiated default value". The permitted values for this attribute are shown below:
@@ -198,7 +202,7 @@ Required. ENUM. The sensitivity markings try to convey the care that should be t
 6. ext-value. An escape value used to extend this attribute.
 
 ### ext-sensitivity
-Optional. String. A means for extending stype.
+Optional. STRING. A means for extending stype.
 
 7. Data Types
 ==
@@ -214,12 +218,17 @@ Multilingual Strings
 +----------------+
 ```
 String data that represents multi-character attributes in a language different than the default encoding of the document is of the MLSTRING data type. The default lang (language) attribute MUST be 'EN'.
-
-Bytes
+Real Numbers
 --
-A binary octet is represented by the BYTE data type.  A sequence of binary octets is represented by the BYTE[] data type.  These octets are encoded using base64.
+Real (floating-point) attributes are represented by the REAL data type.  Real data MUST be encoded in Base 10.
 
-
+Enumerated Types
+--
+Enumerated types are represented by the ENUM data type, and consist of an ordered list of acceptable values.  Each value has a representative keyword.  Within the schema, the enumerated type keywords are used as attribute values.
+    
+Date-Time Strings
+--
+Date-time strings are represented by the DATETIME data type.  Each date-time string identifies a particular instant in time; ranges are not supported. Date-time strings are formatted according to a subset of ISO 8601: 2000 [13] documented in RFC [3339](http://www.ietf.org/rfc/rfc3339.txt).
 8. References
 ==
 8.1. Implementations
