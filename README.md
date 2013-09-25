@@ -31,7 +31,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
     <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared" ttl="1">
         <Description lang="EN">FOUO</Description>
         <Sensitivity stype="historical">
-            <Description>already shared with LE</Description>
+            <Description lang="EN">already shared with LE</Description>
         </Sensitivity>
         <ReportTime>2010-01-01T00:00:55Z</ReportTime>
         <ExpirationTime>2012-01-01T23:59:59Z</ExpirationTime>
@@ -53,7 +53,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
    },
    "Sensitivity": {
       "@stype": "historical",
-      "Description": "already shared with LE"
+      "Description": {
+          "@lang": "EN",
+          "#text":"already shared with LE"
+      },
    },
    "ReportTime": "2010-01-01T00:00:55Z",
    "ExpirationTime": "2012-01-01T23:59:59Z"
