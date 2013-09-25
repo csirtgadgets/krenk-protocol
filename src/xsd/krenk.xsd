@@ -19,6 +19,8 @@
             <xs:attribute type="xs:string" name="stype"/>
           </xs:complexType>
         </xs:element>
+        <xs:element type="xs:dateTime" name="ReportTime"/>
+        <xs:element type="xs:dateTime" name="ExpirationTime"/>
       </xs:sequence>
       <xs:attribute type="xs:string" name="version"/>
       <xs:attribute type="xs:string" name="lang"/>

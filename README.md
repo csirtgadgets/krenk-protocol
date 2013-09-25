@@ -28,11 +28,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-    <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared", ttl="1">
+    <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared" ttl="1">
         <Description lang="EN">FOUO</Description>
         <Sensitivity stype="historical">
             <Description>already shared with LE</Description>
         </Sensitivity>
+        <ReportTime>2010-01-01T00:00:55Z</ReportTime>
+        <ExpirationTime>2012-01-01T23:59:59Z</ExpirationTime>
     </Krenk>
 </xml>
 ```
@@ -40,23 +42,23 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 5.2 JSON
 ```
 {
-    @version        => '0.0.1',
-    @lang           => 'EN',
-    @tlp            => 'red',
-    @rule           => 'shared',
-    @ttl            => 1,
-    Description    => {
-                            lang => 'EN',
-                            content => 'FOUO',
-                      },
-    Sensitivity    => [{
-                          @stype    => 'historical',
-                          Description    => [{ content => 'already shared with LE' }],
-                      }],
-    ReportTime     => '2012-01-01T00:00:50Z',                             
+   "@version": "0.0.1",
+   "@lang": "EN",
+   "@tlp": "red",
+   "@rule": "shared",
+   "@ttl": "1",
+   "Description": {
+      "@lang": "EN",
+      "#text": "FOUO"
+   },
+   "Sensitivity": {
+      "@stype": "historical",
+      "Description": "already shared with LE"
+   },
+   "ReportTime": "2010-01-01T00:00:55Z",
+   "ExpirationTime": "2012-01-01T23:59:59Z"
 }
 ```
-
 
 ## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/main.proto)
 ```
