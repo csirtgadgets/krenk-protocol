@@ -103,19 +103,15 @@ message KrenkType {
 +------------------+
 | REAL version     |
 | ENUM lang        |
-|                  |<>--{0..1}--[ Description    ]
-| ENUM tlp         |<>--{0..*}--[ Sensitivity    ]
-| ENUM rule        |<>--{0..1}--[ ReportTime     ]
-| STRING ext-rule  |<>--{0..1}--[ StartTime      ]
-| UINT32 ttl       |<>--{0..1}--[ ExpirationTime ]
+| ENUM tlp         |<>--{0..1}--[ Description    ]
+| ENUM rule        |<>--{0..*}--[ Sensitivity    ]
+| STRING ext-rule  |<>--{0..1}--[ ReportTime     ]
+| UINT32 ttl       |<>--{0..1}--[ StartTime      ]
+|                  |<>--{0..1}--[ ExpirationTime ]
 +------------------+
 ```
 
-#### version
-Required. REAL. The specification version number to which this Envelope conforms.
-
-##### lang
-Required.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646).
+The aggregate classes that constitute Krenk are:
 
 ### Description
 Zero or one. [MLSTRING](#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
@@ -131,6 +127,14 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes 
 
 ### ExpirationTime
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
+
+The Krenk class has six attributes:
+
+### version
+Required. REAL. The specification version number to which this Envelope conforms.
+
+### lang
+Required.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646).
 
 ### tlp
 Required. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
@@ -208,6 +212,8 @@ Optional. STRING. A means for extending stype.
 ==
 Multilingual Strings
 --
+String data that represents multi-character attributes in a language different than the default encoding of the document is of the MLSTRING data type. The default lang (language) attribute MUST be 'EN'.
+
 ```
 +----------------+
 | MLString       |
@@ -217,7 +223,6 @@ Multilingual Strings
 | ENUM lang      |
 +----------------+
 ```
-String data that represents multi-character attributes in a language different than the default encoding of the document is of the MLSTRING data type. The default lang (language) attribute MUST be 'EN'.
 Real Numbers
 --
 Real (floating-point) attributes are represented by the REAL data type.  Real data MUST be encoded in Base 10.
