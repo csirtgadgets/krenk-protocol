@@ -24,10 +24,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 # 5. Examples
 
-## 5.1 XML
+## 5.1 [XML](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/xsd/krenk.xsd)
 
 ```
-<?xml>
+<?xml version="1.0" encoding="UTF-8"?>
     <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared", ttl="1">
         <Description lang="EN">FOUO</Description>
         <Sensitivity stype="historical">
