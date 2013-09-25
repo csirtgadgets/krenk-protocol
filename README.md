@@ -22,28 +22,9 @@ This document is governed by the [Consensus-Oriented Specification System (COSS)
 ==
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC [2119](http://www.ietf.org/rfc/rfc2119.txt).
 
-## 5. Examples
-## 5.1 JSON
-```
-{
-    version        => '0.0.1',
-    lang           => 'EN',
-    tlp            => 'red',
-    rule           => 'shared',
-    ttl            => 1,
-    Description    => {
-                            lang => 'EN',
-                            content => 'FOUO',
-                      },
-    Sensitivity    => [{
-                          stype    => 'historical',
-                          Description    => [{ content => 'already shared with LE' }],
-                      }],
-    ReportTime     => '2012-01-01T00:00:50Z',                             
-}
-```
+# 5. Examples
 
-## 5.2 XML
+## 5.1 XML
 
 ```
 <?xml>
@@ -56,8 +37,56 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 </xml>
 ```
 
-## 5.3 Protocol Buffer
-see [source](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/main.proto)
+## 5.2 JSON
+```
+{
+    @version        => '0.0.1',
+    @lang           => 'EN',
+    @tlp            => 'red',
+    @rule           => 'shared',
+    @ttl            => 1,
+    Description    => {
+                            lang => 'EN',
+                            content => 'FOUO',
+                      },
+    Sensitivity    => [{
+                          @stype    => 'historical',
+                          Description    => [{ content => 'already shared with LE' }],
+                      }],
+    ReportTime     => '2012-01-01T00:00:50Z',                             
+}
+```
+
+
+## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/main.proto)
+```
+message KrenkType {
+    enum tlp_type {
+        tlp_type_default = 1;
+        tlp_type_white = 2;
+        tlp_type_green = 3;
+        tlp_type_amber = 4;
+        tlp_type_red = 5;
+    }
+    enum rule_type {
+        rule_type_default = 1;
+        rule_type_shared = 2;
+        rule_type_share_investigation = 3;
+        rule_type_share_selectively = 4;
+        rule_type_no_share = 5;
+        rule_type_ext_value = 6;
+    }
+        
+    required tlp_type tlp = 1;
+    optional MLStringType Description = 2;
+    
+    optional rule_type rule = 3 [ default = rule_type_default ];
+    optional string ext_rule = 4;
+    
+    repeated SensitivityType Sensitivity = 5;
+}
+...
+```
 
 6. Protocol
 ==
