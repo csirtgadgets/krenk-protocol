@@ -93,21 +93,18 @@ message KrenkType {
 6.1 Krenk
 --
 ```
-+------------------+
-| Krenk            |
-+------------------+
-| REAL version     |<>--{0..*}--[ Description    ]
-| ENUM lang        |<>--{1..*}--[ Context        ]
-| ENUM tlp         |<>--{0..1}--[ ReportTime     ]
-| UINT32 ttl       |<>--{0..1}--[ StartTime      ]
-|                  |<>--{0..1}--[ ExpirationTime ]
-+------------------+
++----------------+
+| Krenk          |
++----------------+
+| REAL version   |
+| ENUM lang      |<>--{1..*}--[ Context        ]
+|                |<>--{0..1}--[ ReportTime     ]
+|                |<>--{0..1}--[ StartTime      ]
+|                |<>--{0..1}--[ ExpirationTime ]
++----------------+
 ```
 
 The aggregate classes that constitute Krenk are:
-
-### Description
-Zero or one. [Smeg::MLString](https://github.com/csirtgadgets/smeg-protocol#multilingual-strings). A free-form textual representation of the localized restriction policy (eg: 'RESTRICTED' or 'PRIVATE' instead of 'RED'). The specifics of this are to be negotiated out-of-band.
 
 ### Context
 Zero or many. Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
@@ -121,66 +118,35 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes 
 ### ExpirationTime
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
 
-The Krenk class has six attributes:
+The Krenk class has two attributes:
 
 ### version
-Required. REAL. The specification version number to which this Envelope conforms.
+Required. REAL. The specification version number to which this class conforms.
 
 ### lang
 Required.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646).
 
-### tlp
-Optional. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
-
-The value of this attribute is logically inherited by the children of this class.  That is to say, the disclosure rules applied to this class, also apply to its children.
-
-It is possible to set a granular disclosure policy. A child can override the guidelines of a parent class, be it to restrict or relax the disclosure rules (e.g., a child has a weaker policy than an ancestor; or an ancestor has a weak policy, and the children selectively apply more rigid controls).  The implicit value of the restriction attribute for a class that did not specify one can be found in the closest ancestor that did specify a value.
-
-This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
-
-Enumerated attributes SHALL conform to the universally recognized Traffic Light Protocol[[1]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[2]](http://www.us-cert.gov/tlp):
-
-1. **<font color="red">red.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
-
-2. **<font color="amber">amber.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
-
-3. **<font color="green">green.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
-
-4. **<font color="white" style="BACKGROUND-COLOR: black">white.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
-
-### rule
-
-
-### ext-rule
-Optional. STRING. A means for extending rule.
-
-### ttl
-Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
-
-For example:
-
-  Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "AMBER".
-
-Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
-
 6.2 Context
 --
 ```
-+------------------------+
-| Context                |
-+------------------------+
-| STRING                 |
-|                        |
-| ENUM ctype             |
-| STRING ext-ctype       |
-| ENUM rtype             |
-| STRING ext-rtype       |
-+------------------------+
++-------------------+
+| Context           |
++-------------------+
+| STRING            |
+|                   |
+| ENUM ctype        |
+| STRING ext-ctype  |
+| ENUM rtype        |
+| STRING ext-rtype  |
+| ENUM tlp          |
+| STRING ext-tlp    |
+| UINT32 ttl        |
++-------------------+
 ```
 
-The aggregate classes that constitute Sensitivity are:
+The Context class represents the way in which data should be handled. The context is specified in the element content and the type attributes specify the context conduct.
 
-The Sensitivity class has four attributes:
+The Context class has four attributes:
 
 ### ctype
 Optional. ENUM. The context markings try to convey the care that should be taken with this data. The values range from an active operation is in place (i.e., publication of the data will compromise an activity), to the data was gathered via a known collector, to the data was collected by a covert collector, to the data being older. The default value SHALL be "default" meaning the "out of band, negotiated default value". The permitted values for this attribute are shown below:
@@ -207,6 +173,38 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 
 ### ext-rtype
 Optional. STRING. A means for extending rtype.
+
+### tlp
+Optional. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
+
+The value of this attribute is logically inherited by the children of this class.  That is to say, the disclosure rules applied to this class, also apply to its children.
+
+It is possible to set a granular disclosure policy. A child can override the guidelines of a parent class, be it to restrict or relax the disclosure rules (e.g., a child has a weaker policy than an ancestor; or an ancestor has a weak policy, and the children selectively apply more rigid controls).  The implicit value of the restriction attribute for a class that did not specify one can be found in the closest ancestor that did specify a value.
+
+This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
+
+Enumerated attributes MUST conform to the universally recognized Traffic Light Protocol[[1]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[2]](http://www.us-cert.gov/tlp):
+
+1. **<font color="red">red.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
+ 
+1. **<font color="amber">amber.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
+
+1. **<font color="green">green.</font>** targeted community distribution. Information in this category can be circulated widely within a particular community. However, the information may not be published or posted publicly on the Internet, nor released outside of the community.
+
+1. **<font color="white" style="BACKGROUND-COLOR: black">white.</font>** unlimited, public. Subject to standard copyright rules, WHITE information may be distributed freely, without restriction.
+
+### ext-tlp
+Optional. STRING. A means for extending tlp.
+
+### ttl
+Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
+
+For example:
+
+  Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "AMBER".
+
+Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
+
 
 7. Data Types
 ==
