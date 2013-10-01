@@ -15,7 +15,10 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 3. Change Process
 ==
-This document is governed by the [Consensus-Oriented Specification System (COSS)](http://www.digistan.org/spec:1/COSS).
+This document is governed by the [Consensus-Oriented Specification System (COSS)](http://www.digistan.org/spec:1/COSS). In addition:
+
+* Comments MUST be logged as [new issues](https://github.com/blog/411-github-issue-tracker).
+* Contributions MUST be logged as [new pull-requests](https://help.github.com/articles/creating-a-pull-request).
 
 
 4. Language
@@ -47,12 +50,12 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
       "@ttl": "1",
       "text": "FOUO",
    },
-   "ReportTime": "2010-01-01T00:00:55Z",
-   "ExpirationTime": "2012-01-01T23:59:59Z"
+   "reporttime": "2010-01-01T00:00:55Z",
+   "expirationtime": "2012-01-01T23:59:59Z"
 }
 ```
 
-## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/main.proto)
+## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/krenk.proto)
 ```
 message KrenkType {
     // types
