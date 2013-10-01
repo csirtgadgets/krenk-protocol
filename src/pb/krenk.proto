@@ -1,22 +1,8 @@
-message MLStringType
-{
-    optional string lang    = 1 [ default = 'EN' ];
-    required string text = 2;
-}
+import "smeg/src/pb/smeg.proto";
 
-message SensitivityType {
-    enum stype {
-        stype_default       = 1;
-        stype_historical    = 2;
-        stype_live_overt    = 3;
-        stype_live_covert   = 4;
-        stype_active        = 5;
-        stype_ext_value     = 6;
-    }
-    required stype sensitivity          = 1;
-    optional MLStringType Description   = 2;
-}
 message KrenkType {
+    // types
+    
     enum tlp_type {
         tlp_type_default    = 1;
         tlp_type_white      = 2;
@@ -24,18 +10,53 @@ message KrenkType {
         tlp_type_amber      = 4;
         tlp_type_red        = 5;
     }
-    enum rule_type {
-        rule_type_default               = 1;
-        rule_type_shared                = 2;
-        rule_type_share_investigation   = 3;
-        rule_type_share_selectively     = 4;
-        rule_type_no_share              = 5;
-        rule_type_ext_value             = 6;
-    }
+    
+    message ContextType {
+        // types
         
-    required tlp_type tlp                   = 1;
-    optional MLStringType Description       = 2;
-    optional rule_type rule                 = 3 [ default = rule_type_default ];
-    optional string ext_rule                = 4; 
-    repeated SensitivityType Sensitivity    = 5;
+        enum rtype_type {
+            rtype_type_default               = 1;
+            rtype_type_shared                = 2;
+            rtype_type_share_investigation   = 3;
+            rtype_type_share_selectively     = 4;
+            rtype_type_no_share              = 5;
+            rtype_type_ext_value             = 6;
+        }
+        
+        enum ctype_type {
+            ctype_type_default       = 1;
+            ctype_type_historical    = 2;
+            ctype_type_live_overt    = 3;
+            ctype_type_live_covert   = 4;
+            ctype_type_active        = 5;
+            ctype_type_ext_value     = 6;
+        }
+        
+        // attributes
+        
+        optional rtype_type rtype   = 1 [ default = rtype_type_default ];
+        optional string ext_rtype   = 2; 
+    
+        optional ctype_type ctype = 3 [ default = ctype_type_default ];
+        optional string ext_ctype = 4;
+        
+        // content
+        
+        optional string text       = 5;
+    }
+
+    // attributes
+    
+    required string version     = 1;
+    optional string lang        = 2 [ default = 'EN' ];
+    
+    optional uint32 ttl         = 3;
+    required tlp_type tlp       = 4 [ default = tlp_type_red ];
+
+    // classes
+    repeated MLStringType Description   = 5;
+    repeated ContextType context        = 6;
+    optional string ReportTime          = 7;
+    optional string StartTime           = 8;
+    optional string ExpirationTime      = 9;    
 }
