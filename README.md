@@ -28,14 +28,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-    <Krenk version="0.0.1" lang="EN" tlp="red" rule="shared" ttl="1">
-        <Description lang="EN">FOUO</Description>
-        <Sensitivity stype="historical">
-            <Description lang="EN">already shared with LE</Description>
-        </Sensitivity>
-        <ReportTime>2010-01-01T00:00:55Z</ReportTime>
-        <ExpirationTime>2012-01-01T23:59:59Z</ExpirationTime>
-    </Krenk>
+    <krenk version="0.0.1" lang="EN">
+        <context ctype="active" rtype="historical" tlp="amber" ttl="1">RESTRICTED USE/FOUO</context>  
+        <reporttime>2010-01-01T00:00:55Z</reporttime>
+        <expirationtime>2012-01-01T23:59:59Z</expirationtime>
+    </krenk>
 </xml>
 ```
 
@@ -44,19 +41,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {
    "@version": "0.0.1",
    "@lang": "EN",
-   "@tlp": "red",
-   "@rule": "shared",
-   "@ttl": "1",
-   "Description": {
-      "@lang": "EN",
-      "#text": "FOUO"
-   },
-   "Sensitivity": {
-      "@stype": "historical",
-      "Description": {
-          "@lang": "EN",
-          "#text":"already shared with LE"
-      },
+   "context": {
+      "@ctype": "active",
+      "@rtype": "historical",
+      "@ttl": "1",
+      "text": "FOUO",
    },
    "ReportTime": "2010-01-01T00:00:55Z",
    "ExpirationTime": "2012-01-01T23:59:59Z"
