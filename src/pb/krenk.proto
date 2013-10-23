@@ -2,13 +2,6 @@ package Krenk;
 
 message ContextType {
     // types
-    enum tlp_type {
-        tlp_type_default    = 1;
-        tlp_type_white      = 2;
-        tlp_type_green      = 3;
-        tlp_type_amber      = 4;
-        tlp_type_red        = 5;
-    }
     enum rtype_type {
         rtype_type_default               = 1;
         rtype_type_shared                = 2;
@@ -35,11 +28,6 @@ message ContextType {
     optional ctype_type ctype = 3 [ default = ctype_type_default ];
     optional string ext_ctype = 4;
     
-    optional tlp_type tlp   = 5 [ default = tlp_type_red ];
-    optional string ext_tlp = 6;
-    
-    optional uint32 ttl = 7;
-    
     // content
     
     optional string text       = 8;
@@ -50,10 +38,22 @@ message KrenkType {
     required float version  = 1;
     optional string lang    = 2 [ default = 'EN' ];
     
+    enum tlp_type {
+        tlp_type_default    = 1;
+        tlp_type_white      = 2;
+        tlp_type_green      = 3;
+        tlp_type_amber      = 4;
+        tlp_type_red        = 5;
+    }
+    
+    optional tlp_type tlp   = 3 [ default = tlp_type_red ];
+    optional string ext_tlp = 4;
+    optional uint32 ttl     = 5;
+
     // classes
-    repeated string Description         = 3;
-    repeated ContextType Context        = 4;
-    optional string ReportTime          = 5;
-    optional string StartTime           = 6;
-    optional string ExpirationTime      = 7;    
+    repeated string Description         = 6;
+    repeated ContextType Context        = 7;
+    optional string ReportTime          = 8;
+    optional string StartTime           = 9;
+    optional string ExpirationTime      = 10;    
 }
