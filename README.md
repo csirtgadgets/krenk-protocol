@@ -44,12 +44,14 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 {
    "@version": "0.0.1",
    "@lang": "EN",
-   "context": {
-      "@ctype": "active",
-      "@rtype": "historical",
-      "@ttl": "1",
-      "text": "FOUO",
-   },
+   "context": [
+       {
+          "@ctype": "active",
+          "@rtype": "historical",
+          "@ttl": "1",
+          "text": "FOUO",
+       },
+   ],
    "reporttime": "2010-01-01T00:00:55Z",
    "expirationtime": "2012-01-01T23:59:59Z"
 }

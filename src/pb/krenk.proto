@@ -1,62 +1,59 @@
-import "smeg/src/pb/smeg.proto";
+package Krenk;
 
-message KrenkType {
+message ContextType {
     // types
-
-    message ContextType {
-        // types
-        enum tlp_type {
-            tlp_type_default    = 1;
-            tlp_type_white      = 2;
-            tlp_type_green      = 3;
-            tlp_type_amber      = 4;
-            tlp_type_red        = 5;
-        }
-        enum rtype_type {
-            rtype_type_default               = 1;
-            rtype_type_shared                = 2;
-            rtype_type_share_investigation   = 3;
-            rtype_type_share_selectively     = 4;
-            rtype_type_no_share              = 5;
-            rtype_type_ext_value             = 6;
-        }
-        
-        enum ctype_type {
-            ctype_type_default       = 1;
-            ctype_type_historical    = 2;
-            ctype_type_live_overt    = 3;
-            ctype_type_live_covert   = 4;
-            ctype_type_active        = 5;
-            ctype_type_ext_value     = 6;
-        }
-        
-        // attributes
-        
-        optional rtype_type rtype   = 1 [ default = rtype_type_default ];
-        optional string ext_rtype   = 2; 
-    
-        optional ctype_type ctype = 3 [ default = ctype_type_default ];
-        optional string ext_ctype = 4;
-        
-        optional tlp_type tlp   = 5 [ default tlp_type_red ];
-        optional string ext_tlp = 6;
-        
-        optional uint32 ttl = 7;
-        
-        // content
-        
-        optional string text       = 5;
+    enum tlp_type {
+        tlp_type_default    = 1;
+        tlp_type_white      = 2;
+        tlp_type_green      = 3;
+        tlp_type_amber      = 4;
+        tlp_type_red        = 5;
     }
-
+    enum rtype_type {
+        rtype_type_default               = 1;
+        rtype_type_shared                = 2;
+        rtype_type_share_investigation   = 3;
+        rtype_type_share_selectively     = 4;
+        rtype_type_no_share              = 5;
+        rtype_type_ext_value             = 6;
+    }
+    
+    enum ctype_type {
+        ctype_type_default       = 1;
+        ctype_type_historical    = 2;
+        ctype_type_live_overt    = 3;
+        ctype_type_live_covert   = 4;
+        ctype_type_active        = 5;
+        ctype_type_ext_value     = 6;
+    }
+    
     // attributes
     
-    required string version     = 1;
-    optional string lang        = 2 [ default = 'EN' ];
+    optional rtype_type rtype   = 1 [ default = rtype_type_default ];
+    optional string ext_rtype   = 2; 
+
+    optional ctype_type ctype = 3 [ default = ctype_type_default ];
+    optional string ext_ctype = 4;
+    
+    optional tlp_type tlp   = 5 [ default = tlp_type_red ];
+    optional string ext_tlp = 6;
+    
+    optional uint32 ttl = 7;
+    
+    // content
+    
+    optional string text       = 8;
+}
+
+message KrenkType {
+     // attributes
+    required float version  = 1;
+    optional string lang    = 2 [ default = 'EN' ];
     
     // classes
-    repeated MLStringType Description   = 5;
-    repeated ContextType context        = 6;
-    optional string ReportTime          = 7;
-    optional string StartTime           = 8;
-    optional string ExpirationTime      = 9;    
+    repeated string Description         = 3;
+    repeated ContextType Context        = 4;
+    optional string ReportTime          = 5;
+    optional string StartTime           = 6;
+    optional string ExpirationTime      = 7;    
 }
