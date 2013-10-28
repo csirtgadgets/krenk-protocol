@@ -31,8 +31,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-    <krenk version="0.0.1" lang="EN">
-        <context ctype="active" rtype="historical" tlp="amber" ttl="1">RESTRICTED USE/FOUO</context>  
+    <krenk version="0.0.1" lang="EN" tlp="AMBER" ttl="1">
+        <context ctype="active" rtype="historical">FOUO</context>  
         <reporttime>2010-01-01T00:00:55Z</reporttime>
         <expirationtime>2012-01-01T23:59:59Z</expirationtime>
     </krenk>
@@ -42,17 +42,18 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 5.2 JSON
 ```
 {
-   "@version": "0.0.1",
-   "@lang": "EN",
+   "@version":    "0.0.1",
+   "@lang":       "EN",
+   "@ttl":        "1",
+   "@tlp":        "AMBER",   
    "context": [
        {
           "@ctype": "active",
           "@rtype": "historical",
-          "@ttl": "1",
-          "text": "FOUO",
+          "text":   "FOUO",
        },
    ],
-   "reporttime": "2010-01-01T00:00:55Z",
+   "reporttime":     "2010-01-01T00:00:55Z",
    "expirationtime": "2012-01-01T23:59:59Z"
 }
 ```
@@ -60,26 +61,29 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/krenk.proto)
 ```
 message KrenkType {
-    // types
-
-...
-
-    // attributes
-
-    required string version     = 1;
-    optional string lang        = 2 [ default = 'EN' ];
-
-    optional uint32 ttl         = 3;
-    required tlp_type tlp       = 4 [ default = tlp_type_red ];
+     // attributes
+    required float version  = 1;
+    optional string lang    = 2 [ default = 'EN' ];
+    
+    enum tlp_type {
+        tlp_type_default    = 1;
+        tlp_type_white      = 2;
+        tlp_type_green      = 3;
+        tlp_type_amber      = 4;
+        tlp_type_red        = 5;
+    }
+    
+    optional tlp_type tlp   = 3 [ default = tlp_type_red ];
+    optional string ext_tlp = 4;
+    optional uint32 ttl     = 5;
 
     // classes
-    repeated MLStringType Description   = 5;
-    repeated ContextType context        = 6;
-    optional string ReportTime          = 7;
-    optional string StartTime           = 8;
-    optional string ExpirationTime      = 9;
+    repeated string Description         = 6;
+    repeated ContextType Context        = 7;
+    optional string ReportTime          = 8;
+    optional string StartTime           = 9;
+    optional string ExpirationTime      = 10;    
 }
-...
 ```
 
 6. Protocol
@@ -112,7 +116,7 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes 
 ### ExpirationTime
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
 
-The Krenk class has two attributes:
+The Krenk class has five attributes:
 
 ### version
 Required. REAL. The specification version number to which this class conforms.
