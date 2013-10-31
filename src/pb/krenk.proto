@@ -35,7 +35,7 @@ message ContextType {
 
 message KrenkType {
      // attributes
-    required float version  = 1;
+    required double version  = 1;
     optional string lang    = 2 [ default = 'EN' ];
     
     enum tlp_type {
