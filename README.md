@@ -1,8 +1,9 @@
 1. Goals
 ==
-The KRENK protocol is an information disclosure protocol. It enables the sharing of intelligence by defining the rules in which intelligence can be, and should be shared amongst practitioners and/or automated systems.
+The KRENK protocol is an information disclosure protocol. It enables the sharing of intelligence by defining the rules in which intelligence can be, and should be shared amongst practitioners and/or automated systems. This protocol is based on the work by [the APWG](http://apwg.org/data-logistics-blog/data_logistics), [the IETF](http://tools.ietf.org/html/rfc5070), [the REN-ISAC](http://www.ren-isac.net/ses) and [the CSIRT Gadgets Foundation](http://csirtgadgets.org/rfc).
 
 * Provide guidance if and how information should be shared
+* Provide guidance for the circumstances in which information should not be shared
 
 2. License
 ==
