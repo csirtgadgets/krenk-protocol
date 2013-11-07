@@ -25,70 +25,9 @@ This document is governed by the [Consensus-Oriented Specification System (COSS)
 ==
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC [2119](http://www.ietf.org/rfc/rfc2119.txt).
 
-# 5. Examples
-
-## 5.1 [XML](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/xsd/krenk.xsd)
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-    <krenk version="0.0.1" lang="EN" tlp="AMBER" ttl="1">
-        <context ctype="active" rtype="historical">FOUO</context>  
-        <reporttime>2010-01-01T00:00:55Z</reporttime>
-        <expirationtime>2012-01-01T23:59:59Z</expirationtime>
-    </krenk>
-</xml>
-```
-
-## 5.2 JSON
-```
-{
-   "@version":    "0.0.1",
-   "@lang":       "EN",
-   "@ttl":        "1",
-   "@tlp":        "AMBER",   
-   "context": [
-       {
-          "@ctype": "active",
-          "@rtype": "historical",
-          "text":   "FOUO",
-       },
-   ],
-   "reporttime":     "2010-01-01T00:00:55Z",
-   "expirationtime": "2012-01-01T23:59:59Z"
-}
-```
-
-## 5.3 [Protocol Buffer](https://github.com/csirtgadgets/krenk-protocol/blob/master/src/pb/krenk.proto)
-```
-message KrenkType {
-     // attributes
-    required float version  = 1;
-    optional string lang    = 2 [ default = 'EN' ];
-    
-    enum tlp_type {
-        tlp_type_default    = 1;
-        tlp_type_white      = 2;
-        tlp_type_green      = 3;
-        tlp_type_amber      = 4;
-        tlp_type_red        = 5;
-    }
-    
-    optional tlp_type tlp   = 3 [ default = tlp_type_red ];
-    optional string ext_tlp = 4;
-    optional uint32 ttl     = 5;
-
-    // classes
-    repeated string Description         = 6;
-    repeated ContextType Context        = 7;
-    optional string ReportTime          = 8;
-    optional string StartTime           = 9;
-    optional string ExpirationTime      = 10;    
-}
-```
-
-6. Protocol
+5. Protocol
 ==
-6.1 Krenk
+5.1 Krenk
 --
 ```
 +-----------------+
@@ -152,7 +91,7 @@ For example:
 
 Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
 
-6.2 Context
+5.2 Context
 --
 ```
 +-------------------+
@@ -197,6 +136,38 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 ### ext-rtype
 Optional. STRING. A means for extending rtype.
 
+# 6. Examples
+## 6.1 XML
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+    <krenk version="0.0.1" lang="EN" tlp="AMBER" ttl="1">
+        <context ctype="active" rtype="historical">FOUO</context>  
+        <reporttime>2010-01-01T00:00:55Z</reporttime>
+        <expirationtime>2012-01-01T23:59:59Z</expirationtime>
+    </krenk>
+</xml>
+```
+
+## 6.2 JSON
+```
+{
+   "@version":    "0.0.1",
+   "@lang":       "EN",
+   "@ttl":        "1",
+   "@tlp":        "AMBER",   
+   "context": [
+       {
+          "@ctype": "active",
+          "@rtype": "historical",
+          "text":   "FOUO",
+       },
+   ],
+   "reporttime":     "2010-01-01T00:00:55Z",
+   "expirationtime": "2012-01-01T23:59:59Z"
+}
+```
+
 7. Data Types
 ==
 Enumerated Types
@@ -210,4 +181,4 @@ Date-time strings are represented by the DATETIME data type.  Each date-time str
 ==
 8.1. Implementations
 --
-1. libkrenk-perl [github.com/csirtgadgets](https://github.com/csirtgadgets/libkrenk-perl)
+1. libkrenk [github.com/csirtgadgets](https://github.com/csirtgadgets/libkrenk)
