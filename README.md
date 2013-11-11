@@ -74,7 +74,7 @@ The value of this attribute is logically inherited by the children of this class
 
 It is possible to set a granular disclosure policy. A child can override the guidelines of a parent class, be it to restrict or relax the disclosure rules (e.g., a child has a weaker policy than an ancestor; or an ancestor has a weak policy, and the children selectively apply more rigid controls).  The implicit value of the restriction attribute for a class that did not specify one can be found in the closest ancestor that did specify a value.
 
-This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
+This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the [Krenk](#krenk) class.  In other classes where this attribute is used, no default is specified.
 
 Enumerated attributes MUST conform to the universally recognized Traffic Light Protocol [[wikipedia]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[us-cert.gov]](http://www.us-cert.gov/tlp):
 
