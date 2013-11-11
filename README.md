@@ -76,7 +76,7 @@ It is possible to set a granular disclosure policy. A child can override the gui
 
 This attribute is defined as an enumerated value with a default value of "RED".  Note that the default value of the restriction attribute is only defined in the context of the Envelop class.  In other classes where this attribute is used, no default is specified.
 
-Enumerated attributes MUST conform to the universally recognized Traffic Light Protocol[[wikipedia]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[us-cert.gov]](http://www.us-cert.gov/tlp):
+Enumerated attributes MUST conform to the universally recognized Traffic Light Protocol [[wikipedia]](http://en.wikipedia.org/wiki/Traffic_Light_Protocol),[[us-cert.gov]](http://www.us-cert.gov/tlp):
 
 1. **<font color="red">red.</font>** personal for named recipients only. In the context of a meeting, for example, RED information is limited to those present at the meeting. In most circumstances, RED information will be passed verbally or in person.
 1. **<font color="amber">amber.</font>** limited distribution. The recipient may share AMBER information with others within their organization, but only on a ‘need-to-know’ basis. The originator may be expected to specify the intended limits of that sharing.
@@ -87,13 +87,12 @@ Enumerated attributes MUST conform to the universally recognized Traffic Light P
 Optional. STRING. A means for extending tlp.
 
 ### ttl
-Optional. UINT32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
+Optional. UINT32. Allows the specification of a "Time To Live" as similar to [RFC 3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
 
-For example:
+Examples:
 
-  Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "AMBER".
-
-Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
+* Information is transmitted to community1 from community2 with a TLP of "AMBER" and a TTL of "1". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "AMBER".  
+* Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
 
 ## Context
 ```
