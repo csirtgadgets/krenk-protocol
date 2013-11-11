@@ -55,7 +55,7 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking expire
 #####*The Krenk class has five attributes:*
 
 ### version
-Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number using "tenths" as a placeholder. Examples:
+Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number using "tenths", to the right of the decimal as a placeholder. Examples:
 
 Semver | REAL
 -------|-------
