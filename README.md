@@ -55,17 +55,17 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking expire
 #####*The Krenk class has five attributes:*
 
 ### version
-Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number. Examples:
+Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number using "tenths" as a placeholder. Examples:
 
 Semver | REAL
 -------|-------
 ```0.0.1```  | ```0.0010```
-```1.0.01``` | ```1.001```
+```1.0.01``` | ```1.0001```
 ```2.1.2```  | ```2.1020```
-```0.01.01```| ```0.0100```
+```0.01.01```| ```0.0101```
 
 ### lang
-Optional.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
+Optional.  ENUM.  A valid language code per [RFC 4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
 
 ### tlp
 Optional. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
