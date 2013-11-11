@@ -1,12 +1,11 @@
-1. Goals
-==
+# 1. Goals
+
 The KRENK protocol is an information disclosure protocol. It enables the sharing of intelligence by defining the rules in which intelligence can be, and should be shared amongst practitioners and/or automated systems. This protocol is based on the work by [the APWG](http://apwg.org/data-logistics-blog/data_logistics), [the IETF](http://tools.ietf.org/html/rfc5070), [the REN-ISAC](http://www.ren-isac.net/ses) and [the CSIRT Gadgets Foundation](http://csirtgadgets.org/rfc).
 
 * Provide guidance if and how information should be shared
 * Provide guidance for the circumstances in which information should not be shared
 
-2. License
-==
+# 2. License
 
 This Specification is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
@@ -14,22 +13,19 @@ This Specification is distributed in the hope that it will be useful, but WITHOU
 
 You should have received a copy of the GNU Lesser General Public License along with this program; if not, see <http://www.gnu.org/licenses>.
 
-3. Change Process
-==
+# 3. Change Process
+
 This document is governed by the [Consensus-Oriented Specification System (COSS)](http://www.digistan.org/spec:1/COSS). In addition:
 
 * Comments MUST be logged as [new issues](https://github.com/blog/411-github-issue-tracker).
 * Contributions MUST be logged as [new pull-requests](https://help.github.com/articles/creating-a-pull-request).
 
+# 4. Language
 
-4. Language
-==
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC [2119](http://www.ietf.org/rfc/rfc2119.txt).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
-5. Protocol
-==
-5.1 Krenk
---
+# 5. Protocol
+## Krenk
 ```
 +-----------------+
 | Krenk           |
@@ -42,7 +38,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 +-----------------+
 ```
 
-The aggregate classes that constitute Krenk are:
+#####*The aggregate classes that constitute Krenk are:*
 
 ### Context
 Zero or many. Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
@@ -56,7 +52,7 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes 
 ### ExpirationTime
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
 
-The Krenk class has five attributes:
+#####*The Krenk class has five attributes:*
 
 ### version
 Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number. Examples:
@@ -97,8 +93,7 @@ For example:
 
 Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
 
-5.2 Context
---
+## Context
 ```
 +-------------------+
 | Context           |
