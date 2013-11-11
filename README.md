@@ -95,6 +95,8 @@ Examples:
 * Information is transmitted to community1 from community2 with a TLP of "GREEN" and a TTL of "2". This means community1 may interpret the "need-to-know" clause as inclusive of their internal community, but the data must be re-shared as "RED" instead of "GREEN".
 
 ## Context
+The Context class represents the way in which data should be handled. The context is specified in the element content and the type attributes specify the context conduct.
+
 ```
 +-------------------+
 | Context           |
@@ -107,10 +109,7 @@ Examples:
 | STRING ext-rtype  |
 +-------------------+
 ```
-
-The Context class represents the way in which data should be handled. The context is specified in the element content and the type attributes specify the context conduct.
-
-The Context class has four attributes:
+#####*The Context class has four attributes:*
 
 ### ctype
 Optional. ENUM. The context markings try to convey the care that should be taken with this data. The values range from an active operation is in place (i.e., publication of the data will compromise an activity), to the data was gathered via a known collector, to the data was collected by a covert collector, to the data being older. The default value SHALL be "default" meaning the "out of band, negotiated default value". The permitted values for this attribute are shown below:
