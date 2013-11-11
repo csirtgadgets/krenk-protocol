@@ -44,7 +44,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 Zero or many. Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
 
 ### ReportTime
-Zero or one. TIMESTAMP. A timestamp that represents when this data marking was generated.
+Zero or one. [TIMESTAMP](#date-time). A timestamp that represents when this data marking was generated.
 
 ### StartTime
 Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes effect.
