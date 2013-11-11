@@ -41,7 +41,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 #####*The aggregate classes that constitute Krenk are:*
 
 ### Context
-Zero or many. [CONTEXT](#context). Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
+Zero or many. [CONTEXT](#context-1). Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
 
 ### ReportTime
 Zero or one. [TIMESTAMP](#date-time-strings). A timestamp that represents when this data marking was generated.
