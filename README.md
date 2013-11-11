@@ -59,7 +59,12 @@ Zero or one. TIMESTAMP. A timestamp that represents when the data marking expire
 The Krenk class has five attributes:
 
 ### version
-Required. REAL. The specification version number to which this class conforms.
+Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number. Examples:
+
+* 0.0.1 SHALL BE implemented as 0.0010
+* 1.0.01 SHALL BE implemented as 1.0001
+* 2.1.2 SHALL BE implemented as 2.1020
+* 0.01.01 SHALL BE implemented as 0.0101
 
 ### lang
 Optional.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
@@ -138,11 +143,11 @@ Optional. ENUM. A rule for how the data should be handled by the target Contact 
 Optional. STRING. A means for extending rtype.
 
 # 6. Examples
-## 6.1 XML
+## XML
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-    <krenk version="0.0.1" lang="EN" tlp="AMBER" ttl="1">
+    <krenk version="0.0001" lang="EN" tlp="AMBER" ttl="1">
         <context ctype="active" rtype="historical">FOUO</context>  
         <reporttime>2010-01-01T00:00:55Z</reporttime>
         <expirationtime>2012-01-01T23:59:59Z</expirationtime>
@@ -150,10 +155,10 @@ Optional. STRING. A means for extending rtype.
 </xml>
 ```
 
-## 6.2 JSON
+## JSON
 ```
 {
-   "@version":    "0.0.1",
+   "@version":    "0.0001",
    "@lang":       "EN",
    "@ttl":        "1",
    "@tlp":        "AMBER",   
@@ -161,7 +166,7 @@ Optional. STRING. A means for extending rtype.
        {
           "@ctype": "active",
           "@rtype": "historical",
-          "text":   "FOUO",
+          "#text":   "FOUO",
        },
    ],
    "reporttime":     "2010-01-01T00:00:55Z",
@@ -169,17 +174,24 @@ Optional. STRING. A means for extending rtype.
 }
 ```
 
-7. Data Types
-==
-Enumerated Types
---
+# 7. Data Types
+
+## Enumerated Types
+
 Enumerated types are represented by the ENUM data type, and consist of an ordered list of acceptable values.  Each value has a representative keyword.  Within the schema, the enumerated type keywords are used as attribute values.
 
-Date-Time Strings
---
-Date-time strings are represented by the DATETIME data type.  Each date-time string identifies a particular instant in time; ranges are not supported. Date-time strings are formatted according to a subset of ISO 8601: 2000 [13] documented in RFC [3339](http://www.ietf.org/rfc/rfc3339.txt).
-8. References
-==
-8.1. Implementations
---
-1. libkrenk [github.com/csirtgadgets](https://github.com/csirtgadgets/libkrenk)
+## Date-Time Strings
+
+Date-time strings are represented by the DATETIME data type.  Each date-time string identifies a particular instant in time; ranges are not supported. Date-time strings are formatted according to a subset of [ISO 8601: 2000 [13]](http://en.wikipedia.org/wiki/ISO_8601) as documented in [RFC 3339](http://www.ietf.org/rfc/rfc3339.txt).
+
+# 8. References
+## Known Implementations
+* libkrenk [github.com/csirtgadgets](https://github.com/csirtgadgets/libkrenk)
+
+## Misc
+* CSIRT Gadgets Protocols - [csirtgadgets.org](http://csirtgadgets.org/rfc)
+* Licenses for Protocols - [hintjens.com](http://hintjens.com/blog:41)
+* ZeroMQ RFC - [rfc.zeromq.org](http://rfc.zeromq.org/)
+* Consensus Oriented Specification System - [digistan.org](http://www.digistan.org/)
+* Google Protocol Buffers Developer Guide - [developers.google.com](https://developers.google.com/protocol-buffers/docs/overview)
+* Freeformatter (xml to xsd, json validation, etc) - [freeformatter.com](http://www.freeformatter.com/)
