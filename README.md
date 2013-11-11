@@ -62,6 +62,11 @@ Required. REAL. The specification version number to which this class conforms. W
 * 2.1.2 SHALL BE implemented as 2.1020
 * 0.01.01 SHALL BE implemented as 0.0101
 
+Semver | REAL
+0.0.1  | 0.0010
+1.0.01 | 1.001
+
+
 ### lang
 Optional.  ENUM.  A valid language code per RFC [4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
 
