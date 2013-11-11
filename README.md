@@ -41,21 +41,21 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 #####*The aggregate classes that constitute Krenk are:*
 
 ### Context
-Zero or many. Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
+Zero or many. [CONTEXT](#context). Describes the context in which the data is represented. SHOULD be used to convey the care to be taken with the data.
 
 ### ReportTime
-Zero or one. [TIMESTAMP](#date-time). A timestamp that represents when this data marking was generated.
+Zero or one. [TIMESTAMP](#date-time-strings). A timestamp that represents when this data marking was generated.
 
 ### StartTime
-Zero or one. TIMESTAMP. A timestamp that represents when the data marking takes effect.
+Zero or one. [TIMESTAMP](#date-time-strings). A timestamp that represents when the data marking takes effect.
 
 ### ExpirationTime
-Zero or one. TIMESTAMP. A timestamp that represents when the data marking expires.
+Zero or one. [TIMESTAMP](#date-time-strings). A timestamp that represents when the data marking expires.
 
 #####*The Krenk class has five attributes:*
 
 ### version
-Required. REAL. The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number using "tenths", to the right of the decimal as a placeholder. Examples:
+Required. [REAL](#real-numbers). The specification version number to which this class conforms. While the protocol itself conforms to a [semantic versioning](http://semver.org/), implemented, the protocol version should conform to a REAL (float/double) number using "tenths", to the right of the decimal as a placeholder. Examples:
 
 Semver | REAL
 -------|-------
@@ -65,10 +65,10 @@ Semver | REAL
 ```0.01.01```| ```0.0101```
 
 ### lang
-Optional.  ENUM.  A valid language code per [RFC 4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
+Optional.  [ENUM](#enumerated-types).  A valid language code per [RFC 4646](http://tools.ietf.org/html/rfc4646). The default is 'EN'.
 
 ### tlp
-Optional. ENUM. This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
+Optional. [ENUM](#enumerated-types). This attribute indicates disclosure guidelines to which the sender expects the recipient to adhere for the information represented in this class and its children.  This guideline provides no security since there are no specified technical means to ensure that the recipient of the document handles the information as the sender requested.
 
 The value of this attribute is logically inherited by the children of this class.  That is to say, the disclosure rules applied to this class, also apply to its children.
 
@@ -87,7 +87,7 @@ Enumerated attributes MUST conform to the universally recognized Traffic Light P
 Optional. STRING. A means for extending tlp.
 
 ### ttl
-Optional. Uint32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
+Optional. UINT32. Allows the specification of a "Time To Live" as similar to RFC [3443](http://tools.ietf.org/html/rfc3443) in relation to the TLP specification. The default value is 0, the max value is 3. A positive value allows the content to be re-shared to an extension of the original target contact (or community) while increasing the "TLP" restriction level.
 
 For example:
 
@@ -127,7 +127,7 @@ Optional. ENUM. The context markings try to convey the care that should be taken
 Optional. STRING. A means for extending ctype.
 
 ### rtype
-Optional. ENUM. A rule for how the data should be handled by the target Contact (eg: person, entity, community, etc). The permitted values for this attribute are shown below. The default value is "default".
+Optional. [ENUM](#enumerated-types). A rule for how the data should be handled by the target Contact (eg: person, entity, community, etc). The permitted values for this attribute are shown below. The default value is "default".
 
 1. **default**. The default, out-of-band agreement applies.
 1. **shared**. At-least one entity in this community has been made aware of the data.
@@ -172,6 +172,10 @@ Optional. STRING. A means for extending rtype.
 ```
 
 # 7. Data Types
+
+## Real Numbers
+
+Real (floating-point) attributes are represented by the REAL data type. Real data MUST be encoded in Base 10.
 
 ## Enumerated Types
 
